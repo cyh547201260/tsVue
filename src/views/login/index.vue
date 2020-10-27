@@ -106,6 +106,10 @@ export default {
     formatSidebarsMenu() {
 
     },
+    getComponent(path) {
+      console.log('lalalalalalalall')
+      return (resolve) => require(['@/views' + path], resolve)
+    },
     getSidebars() {
           getMenusList().then((res) => {
             var obj = res.data;
@@ -137,19 +141,21 @@ export default {
                   var childObj = {
                     path: inObj[j]['path'],
                     name: inObj[j]['name'],
-                    component:dashboradIndex,
+                    component:this.getComponent(inObj[j]['component']),
                     meta: { title: inObj[j]['name'], icon: 'dashboard' }
                   }
                   fatherLevel.children.push(childObj);
                 }
+                console.log(this.getComponent(inObj[j]['component']))
               }else{
                 console.log(obj[i]['component'])
                 var childObj = {
                   path: obj[i]['redirect'],
                   name: obj[i]['name'],
-                  component:  dashboradIndex,
+                  component:  this.getComponent(obj[i]['component']),
                   meta: { title: obj[i]['name'], icon: 'dashboard' }
                 }
+                console.log(this.getComponent(obj[i]['component']))
                 fatherLevel.name = '';
                 fatherLevel.children.push(childObj);
               }
@@ -161,6 +167,8 @@ export default {
             resultRouters = newRouters.concat(initRouters);
             resultRouters.push({ path: '*', redirect: '/404', hidden: true },{path: '/404',component: page404,hidden: true});
             this.$store.dispatch("app/setRouters", resultRouters);
+            localStorage.setItem('ts_sidebar_router',JSON.stringify(resultRouters));
+            console.log(resultRouters)
             var _this = this;
             setTimeout(() => {
               var rot = _this.redirect || '/'

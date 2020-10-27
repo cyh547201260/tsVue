@@ -40,7 +40,6 @@ export default {
   },
   created() {
     console.log('bbbbbbbbbb')
-    this.getSidebars()
     this.getMenuLists()
   },
   methods: {

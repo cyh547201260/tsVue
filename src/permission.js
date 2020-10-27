@@ -4,6 +4,7 @@ import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
+import { getSidebarsFun } from '@/utils/getSidebars'
 import getPageTitle from '@/utils/get-page-title'
 
 // import { getAsyncRoutes } from '@/utils/asyncRouter'
@@ -18,8 +19,12 @@ router.beforeEach(async(to, from, next) => {
   NProgress.start()
 
   // set page title
-  document.title = getPageTitle(to.meta.title)
-
+  document.title = getPageTitle(to.meta.title);
+  getSidebarsFun();
+  // const localRouters = JSON.parse(localStorage.ts_sidebar_router)
+  // store.dispatch("app/setRouters", localRouters);
+  // router.addRoutes(store.getters.addRouters); // 动态添加可访问路由表
+  // router.options.routes=store.getters.addRouters;
   // determine whether the user has logged in
   const hasToken = getToken()
   if (hasToken) {
@@ -28,17 +33,14 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
+      const hasGetUserInfo = store.getters.name;
+
       if (hasGetUserInfo) {
         next()
       } else {
         try {
           if (registerRouteFresh) {
-            console.log('try')
-          //   // get user info
-          //   // await store.dispatch('user/getInfo')
 
-            console.log(JSON.parse(JSON.stringify( store.getters.addRouters)))
             router.addRoutes(store.getters.addRouters); // 动态添加可访问路由表
             router.options.routes=store.getters.addRouters;
           //   // return false;
@@ -49,7 +51,6 @@ router.beforeEach(async(to, from, next) => {
 
           }else {
             next();
-            console.log(to)
             // next({path:'',query:{redirect:to.path}});
           }
         } catch (error) {
