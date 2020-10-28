@@ -12,6 +12,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
+
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
@@ -31,6 +32,7 @@ export default {
       'sidebar'
     ]),
     routes() {
+      console.log(this.$router.options.routes)
       return this.$router.options.routes
     },
     activeMenu() {
@@ -51,6 +53,11 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  mounted(){
+	  console.log('---------------')
+	  console.log(this.$router.options.routes)
+	  console.log('---------------')
   }
 }
 </script>

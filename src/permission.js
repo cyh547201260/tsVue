@@ -1,4 +1,5 @@
 import router from './router'
+import routerJs from './router/index.js'
 import store from './store'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
@@ -6,6 +7,7 @@ import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import { getApps,getMenusList } from '@/api/nav'
 import getPageTitle from '@/utils/get-page-title'
+import Layout from '@/layout'
 import page404 from '@/views/404'
 
 // import { getAsyncRoutes } from '@/utils/asyncRouter'
@@ -15,10 +17,24 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login'] // no redirect whitelist
 let registerRouteFresh = true;
 
+const staticRoute = [
+  {
+     path: '/login',
+     component: resolve => {require(['@/views/login/index'], resolve)},
+     hidden: true
+   },
+
+   {
+     path: '/404',
+     component:  resolve => require(['@/views/404'], resolve),
+     hidden: true
+   },
+]
+
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
-
+console.log('start')
   // set page title
   document.title = getPageTitle(to.meta.title);
   // const localRouters = JSON.parse(localStorage.ts_sidebar_router)
@@ -78,8 +94,8 @@ router.beforeEach(async(to, from, next) => {
       // }
 
       // 用户已登录，添加动态菜单和路由后直接跳转
-
-      // addDynamicMenuAndRoutes(to, from, next);
+// next();
+      addDynamicMenuAndRoutes(to, from, next);
 
     } else {
       /* has no token*/
@@ -104,8 +120,8 @@ router.beforeEach(async(to, from, next) => {
 /**
  * 加载动态菜单和路由
  */
-function addDynamicMenuAndRoutes(userName, to, from, next) {
-
+function addDynamicMenuAndRoutes( to, from, next) {
+console.log(store.state.app.menuRouteLoaded)
   if (store.state.app.menuRouteLoaded) {
 
     console.log("动态菜单和路由已经存在.");
@@ -136,28 +152,26 @@ function addDynamicMenuAndRoutes(userName, to, from, next) {
 
     // 这里，根据静态路由配置可知router.options.routes[0]为根路由
 
-    router.options.routes[0].children = [].concat(dynamicRoutes);
-
+    router.options.routes = [].concat(dynamicRoutes);
     // 这里为啥不把 * 匹配放到静态路由的最后面，是因为如果放置在静态路由最后面，作为一级路由，当url同前面的路由都不匹配时，会匹配到 *，这样一来，刷新页面时，由于还没加载动态路由，预期和动态路由匹配的url，会匹配到静态路由的 *，然后跳转404页面。
 
     if (router.options.routes[router.options.routes.length - 1].path != "*") {
 
+      // router.options.routes = [{path: '/',redirect: router.options.routes[0].path,hidden: true}].concat(router.options.routes);
+
       router.options.routes = router.options.routes.concat([
 
         {
-
-          path: "*",
-
-          name: "notFound",
-
-          component: page404
-
+           path: '*',
+           redirect: '/404',
+           hidden: true
         }
 
       ]);
 
     }
 
+console.log( router.options.routes)
 
 
     // 添加路由，让路由生效
@@ -168,21 +182,21 @@ function addDynamicMenuAndRoutes(userName, to, from, next) {
 
     // 存储导航菜单list数据
 
-    store.commit("setNavMenu", navMenuData);
+    store.dispatch("app/setNavMenu", navMenuData);
 
 
 
     // 设置菜单为已加载状态
 
-    store.commit("setMenuRouteLoadStatus", true);
+    store.dispatch("app/setMenuRouteLoadStatus", true);
+     next({ ...to, replace: false });// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+    // next();
 
-    next();
+    // if (to.matched.length == 0) {
 
-    if (to.matched.length == 0) {
+    //   router.push(to.path);
 
-      router.push(to.path);
-
-    }
+    // }
 
   } else {
     // 本地sessionStorage获取不到，从服务器端读取
@@ -190,18 +204,14 @@ function addDynamicMenuAndRoutes(userName, to, from, next) {
       .then(res => {
         // 获取动态路由
         let dynamicRoutes = getDynamicRoutes(res.data);
-
-
-
         // 添加路由
-
-        router.options.routes[0].children = [].concat(dynamicRoutes);
+        // router.options.routes[0].children = [].concat(dynamicRoutes);
 
 
 
         // 如果要添加为一级路由，则按如下方式拼接路由
 
-        // router.options.routes = staticRoute.concat(dynamicRoutes)
+        router.options.routes = staticRoute.concat(dynamicRoutes)
 
 
 
@@ -218,23 +228,18 @@ function addDynamicMenuAndRoutes(userName, to, from, next) {
           router.options.routes[router.options.routes.length - 1].path != "*"
 
         ) {
-
+          // router.options.routes = [{path: '/',redirect: router.options.routes[0].path,hidden: true}].concat(router.options.routes);
           router.options.routes = router.options.routes.concat([
 
             {
-
-              path: "*",
-
-              name: "notFound",
-
-              component: page404
-
+              path: '*',
+              redirect: '/404',
+              hidden: true
             }
 
           ]);
 
         }
-
 
 
         router.addRoutes(router.options.routes); //会产生重复路由，控制台会有warn提示，但是不影响，vue-router会自动去重，
@@ -245,23 +250,23 @@ function addDynamicMenuAndRoutes(userName, to, from, next) {
 
         sessionStorage.setItem("navMenuData", JSON.stringify(res.data));
 
-        store.commit("setNavMenu", res.data);
+        store.dispatch("app/setNavMenu", res.data);
 
 
 
         // 设置菜单为已加载状态
 
-        store.commit("setMenuRouteLoadStatus", true);
+        store.dispatch("app/setMenuRouteLoadStatus", true);
 
 
 
-        next(); /* 注意:路由匹配是在router.addRoutes之前完成的，所以，即便使用router.addRoutes添加动态路由，也会出现to.matched.length也会等于0的情况，即没匹配到路由，所以to.matched.length等于0的情况下，再次执行router.push(to.path)，这样，再次触发beforeEach函数调用)*/
+        // next(); /* 注意:路由匹配是在router.addRoutes之前完成的，所以，即便使用router.addRoutes添加动态路由，也会出现to.matched.length也会等于0的情况，即没匹配到路由，所以to.matched.length等于0的情况下，再次执行router.push(to.path)，这样，再次触发beforeEach函数调用)*/
+         next({ ...to, replace: false });// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+        // if (to.matched.length == 0) {
 
-        if (to.matched.length == 0) {
+        //   router.push(to.path);
 
-          router.push(to.path);
-
-        }
+        // }
 
       })
 
@@ -288,26 +293,46 @@ function addDynamicMenuAndRoutes(userName, to, from, next) {
  * @param {*} menuList菜单列表
  * @param {*} routes递归创建的动态(菜单)路由
  */
-function getDynamicRoutes(menuList = [], parentRoute = []) {
+function getDynamicRoutes(menuList = [], parentRoute = [], letSelfInChild = false) {
   for (var i = 0; i < menuList.length; i++) {
     var route = {}; // 存放路由配置
-    if (menuList[i].url && /\S/.test(menuList[i].url)) {
+    if (menuList[i] && menuList[i].path && /\S/.test(menuList[i].path)) {
       // url不为空，且包含任何非空白字符
       route = {
-        path: menuList[i].url,
-        component: resolve => require([`@/views/${menuList[i].url}`], resolve),
+        path: menuList[i].path,
+        component: null,
         name: menuList[i].name,
         children: [],
         meta: {
+          componentPath:menuList[i].component,
           icon: menuList[i].icon,
           index: menuList[i].id,
-        }
+        },
       };
-      if (menuList[i].children && menuList[i].children.length >= 1) {
+      if(menuList[i].component){
+        route["component"] = resolve => require([`@/views/${route.meta.componentPath}`], resolve);
+      }
+      if (menuList[i] && menuList[i].children && menuList[i].children.length >= 1) {
         getDynamicRoutes(menuList[i].children, route["children"]);
       }
+      if(menuList[i].level == 1){
+        route.component = Layout;
+        route.redirect = menuList[i].redirect,
+          console.log(letSelfInChild)
+          if(menuList[i].children.length == 0){
+
+              var newObj = JSON.parse(JSON.stringify(menuList[i]))
+              newObj.path= newObj.redirect;
+              newObj.level= 2;
+              route.meta.isSelf = true;
+              newObj.meta = {}
+              newObj.meta.isSelf = true;
+              route.alwaysShow= true
+              getDynamicRoutes([newObj], route["children"],true);
+          }
+      }
     } else {
-      if (menuList[i].children && menuList[i].children.length >= 1) {
+      if (menuList[i] && menuList[i].children && menuList[i].children.length >= 1) {
         getDynamicRoutes(menuList[i].children, parentRoute);
       }
     }

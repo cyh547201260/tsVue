@@ -10,6 +10,8 @@ const state = {
   appsList:[],
   addRoutes:[],
   addRouters:[],
+  navMenuData:[],
+  menuRouteLoaded:false,
 }
 
 const mutations = {
@@ -41,7 +43,13 @@ const mutations = {
   },
   ADD_ROUTERS: (state,addRouters) =>{
     state.addRouters = addRouters
-  }
+  },
+  SET_NAV_MENU: (state,navMenuData) =>{
+    state.navMenuData = navMenuData
+  },
+  SET_MENU_ROUTE_LOAD_STATUS: (state,status) =>{
+    state.menuRouteLoaded = status
+  },
 }
 
 const actions = {
@@ -67,7 +75,12 @@ const actions = {
     console.log('ADD_ROUTERS')
     commit('ADD_ROUTERS', addRouters)
   },
-
+  setNavMenu({ commit } , navMenuData) {
+    commit('SET_NAV_MENU', navMenuData)
+  },
+  setMenuRouteLoadStatus({ commit } , status) {
+    commit('SET_MENU_ROUTE_LOAD_STATUS', status)
+  },
 }
 
 export default {

@@ -1,16 +1,25 @@
 <template>
   <div v-if="!item.hidden">
+    <template v-if="item.children.length == 1">
+      <app-link v-if="item.children[0].meta" :to="resolvePath(item.children[0].path)">
+        <el-menu-item :index="resolvePath(item.children[0].path)" >
+          1<item :icon="item.children[0].meta.icon||(item.meta&&item.meta.icon)" :title="item.children[0].name" />
+        </el-menu-item>
+      </app-link>
+    </template>
+    <template v-else>
+      
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" >
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+          1<item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.name" />
         </el-menu-item>
       </app-link>
     </template>
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
+        2<item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.name" />
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -21,6 +30,7 @@
         class="nest-menu"
       />
     </el-submenu>
+    </template>
   </div>
 </template>
 
@@ -56,6 +66,12 @@ export default {
     this.onlyOneChild = null
     return {}
   },
+  created(){
+
+    console.log(this.item)
+  },
+  mounted(){
+  },
   methods: {
     hasOneShowingChild(children = [], parent) {
       const showingChildren = children.filter(item => {
@@ -76,6 +92,7 @@ export default {
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
         this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
+      console.log( this.onlyOneChild)
         return true
       }
 
