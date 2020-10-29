@@ -1,6 +1,7 @@
 <template>
-  <div class="case-detail-box">
-    <breadcrumb></breadcrumb>
+  <div>
+    <nav-crumb-top></nav-crumb-top>
+
     123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -23,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { getApps,getMenusList } from '@/api/nav'
+import NavCrumbTop from '../../components/CaseDetail/NavCrumbTop.vue'
 import Breadcrumb from '../../components/Breadcrumb/index.vue'
 
 export default {
@@ -32,7 +34,7 @@ export default {
 
     }
   },
-  components: {Breadcrumb},
+  components: {Breadcrumb,NavCrumbTop},
   computed: {
     ...mapGetters([
       'name'
