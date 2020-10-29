@@ -1,12 +1,12 @@
 <template>
-  <div class="data-table-box data-table-filter-open" ref="datatablebox" id="dataTableBox">
+  <div class="data-table-box" :class="filterHighOpenState ? 'data-table-filter-open' : 'data-table-filter-close'" ref="datatablebox" id="dataTableBox">
     <el-table :data="tableData" fit stripe style="width: 100%" height="100%">
       <template v-for="(item,key) in tableKeys">
         <table-item :cellwidth="getCellWidth(key)" :tablecellwidth="tablecellwidth" :tabledata="tableData" :tablekey="item" :indexkey="key"></table-item>
       </template>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
+          <el-button @click="goCaseDetail(scope.row)" type="primary" size="small">查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -75,6 +75,11 @@
       }
     },
     components:{TableItem},
+    computed:{
+      filterHighOpenState(){
+        return this.$store.getters.highLevelOpenStatus;
+      }
+    },
     props: ['tablecellwidth'],
     created(){
       this.getClientWidth();
@@ -86,6 +91,10 @@
       getCellWidth(cellkey){
           return this.tablecellwidth[cellkey]
         // console.log(this.$refs.datatablebox.clientWidth)
+      },
+      goCaseDetail(data){
+        this.$router.push({path:'/caseDetail/index', query:{id:data.id}})
+        console.log(data)
       }
     }
   }
@@ -95,6 +104,7 @@
   .search-btns-box{
     width: 230px;
     white-space: nowrap;
+    transition: height 1s;
   }
   .search-btns-box .el-button{
     margin-top: 4px;
@@ -103,7 +113,7 @@
     padding: 8px 0 !important;
   }
   .data-table-box.data-table-filter-close{
-    height: calc(100vh - 260px);
+    height: calc(100vh - 299px);
   }
   .data-table-box.data-table-filter-open{
     height: calc(100vh - 355px);

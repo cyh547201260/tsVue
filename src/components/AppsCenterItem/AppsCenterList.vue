@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import AppsCenterItemEl from './AppsCenterItemEl.vue'
 export default {
   data() {
@@ -16,8 +17,11 @@ export default {
   components:{AppsCenterItemEl},
   props:['applist'],
   created() {
+  },
+  mounted(){
     console.log('3123123213123')
     console.log(this.applist)
+
   },
   methods: {
   }
@@ -28,5 +32,6 @@ export default {
 	.apps-list-item-box{
 		display: flex;
 		display: -webkit-flex;
+    padding: 20px 56px;
 	}
 </style>

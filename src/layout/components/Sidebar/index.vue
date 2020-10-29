@@ -55,9 +55,6 @@ export default {
     }
   },
   mounted(){
-	  console.log('---------------')
-	  console.log(this.$router.options.routes)
-	  console.log('---------------')
   }
 }
 </script>

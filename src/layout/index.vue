@@ -98,7 +98,7 @@ export default {
     width: 100%;
   }
   #app .sidebar-container{
-    top: 60px;
+    top: 56px;
     height: calc(100% - 60px);
     width: 200px !important;
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="search-input-item" >
+    <div class="search-input-item" v-show="filterHighOpenState">
       <ins-date-picker-muti-option class="filter-input-item" :timerangetype="timeRangeType" :daterangeval="dateRangeVal"></ins-date-picker-muti-option>
 
       <template v-for="listItem in menuBtnList">
@@ -61,6 +61,11 @@
         timeRangeType:'',
       }
     },
+    computed:{
+      filterHighOpenState(){
+        return this.$store.getters.highLevelOpenStatus;
+      }
+    },
     components:{InsDatePickerMutiOption,SearchBtns},
     props: {
       togglestate:{
@@ -72,22 +77,6 @@
       console.log(this.togglestate)
     },
     methods: {
-      filterToggle(){
-        this.filterHighOpenState = !this.filterHighOpenState;
-        this.basicFilterClassStr = (this.filterHighOpenState ? '' : 'el-icon-arrow-up-reserve');
-      },
-      handleSelect(){
-        console.log(123)
-      },
-      querySearchAsync(queryString, cb) {
-        var restaurants = this.restaurants;
-        var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
-
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-          cb(results);
-        }, 3000 * Math.random());
-      },
     }
   }
 </script>

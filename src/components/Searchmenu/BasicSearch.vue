@@ -4,11 +4,12 @@
       <el-autocomplete prefix-icon="el-icon-search" class="basic-search-input" v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入关键词查询" @select="handleSelect"></el-autocomplete>
       <span class="high-filter-btn" @click="filterToggle()">高级筛选<i class="el-select__caret el-input__icon is-reverse el-icon-arrow-up"  :class="basicFilterClassStr" ></i></span>
     </div>
-    <high-search :togglestate="highSearchToggleState"></high-search>
+    <high-search :togglestate="filterHighOpenState"></high-search>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import HighSearch from './HighSearch.vue'
 
 
@@ -21,13 +22,21 @@
       return{
         state:'',
         highSearchToggleState:false,
-        filterHighOpenState:false,
-        basicFilterClassStr: 'el-icon-arrow-up-reserve',
+        basicFilterClassStr: '',
+      }
+    },
+    computed:{
+      ...mapGetters([
+        'sidebar',
+        'avatar'
+      ]),
+      filterHighOpenState(){
+        return this.$store.getters.highLevelOpenStatus;
       }
     },
     methods: {
       filterToggle(){
-        this.filterHighOpenState = !this.filterHighOpenState;
+        this.$store.dispatch("app/setHighLevelOpenStatus");
         this.basicFilterClassStr = (this.filterHighOpenState ? '' : 'el-icon-arrow-up-reserve');
       },
       handleSelect(){

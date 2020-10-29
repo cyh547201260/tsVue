@@ -12,6 +12,7 @@ const state = {
   addRouters:[],
   navMenuData:[],
   menuRouteLoaded:false,
+  highLevelOpenStatus:true,
 }
 
 const mutations = {
@@ -50,6 +51,9 @@ const mutations = {
   SET_MENU_ROUTE_LOAD_STATUS: (state,status) =>{
     state.menuRouteLoaded = status
   },
+  SET_HIGH_LEVEL_OPEN_STATUS: (state) =>{
+    state.highLevelOpenStatus = !state.highLevelOpenStatus
+  },
 }
 
 const actions = {
@@ -80,6 +84,9 @@ const actions = {
   },
   setMenuRouteLoadStatus({ commit } , status) {
     commit('SET_MENU_ROUTE_LOAD_STATUS', status)
+  },
+  setHighLevelOpenStatus({ commit }) {
+    commit('SET_HIGH_LEVEL_OPEN_STATUS')
   },
 }
 

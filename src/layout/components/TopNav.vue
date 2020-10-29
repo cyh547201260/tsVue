@@ -8,17 +8,23 @@
         <user-header-info></user-header-info>
       </div>
     </div>
+    <apps-drawer></apps-drawer>
   </div>
 </template>
 
 <script>
+  import AppsDrawer from '../../components/AppsCenterItem/AppsDrawer.vue'
   import UserHeaderInfo from './TopNav/UserHeaderInfo.vue'
   export default {
     name: 'TopNav',
     components: {
-      UserHeaderInfo
+      UserHeaderInfo,
+      AppsDrawer
     },
     computed: {
+    },
+    methods:{
+
     }
   }
 </script>
@@ -34,6 +40,7 @@
     z-index: 99999;
     display: flex;
     display: -webkit-flex;
+    box-shadow: 0px 2px 4px 0px rgba(231, 231, 231, 0.5);
   }
   .app-top-left{
     width: 200px;
