@@ -12,6 +12,5 @@ export default {
 <style>
   body{
     background: #F9F9F9;
-    overflow: hidden;
   }
 </style>

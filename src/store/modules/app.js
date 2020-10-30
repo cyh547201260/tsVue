@@ -13,6 +13,7 @@ const state = {
   navMenuData:[],
   menuRouteLoaded:false,
   highLevelOpenStatus:true,
+  caseDetailNavIndex:1
 }
 
 const mutations = {
@@ -54,6 +55,9 @@ const mutations = {
   SET_HIGH_LEVEL_OPEN_STATUS: (state) =>{
     state.highLevelOpenStatus = !state.highLevelOpenStatus
   },
+  SET_CASE_DETAIL_NAV_INDEX: (state,index) =>{
+    state.caseDetailNavIndex = index
+  },
 }
 
 const actions = {
@@ -87,6 +91,9 @@ const actions = {
   },
   setHighLevelOpenStatus({ commit }) {
     commit('SET_HIGH_LEVEL_OPEN_STATUS')
+  },
+  setCaseDetailNavIndex({ commit },index) {
+    commit('SET_CASE_DETAIL_NAV_INDEX',index)
   },
 }
 

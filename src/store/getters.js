@@ -3,6 +3,7 @@ const getters = {
   device: state => state.app.device,
   appsCenterShow: state => state.app.appsCenterShow,
   highLevelOpenStatus: state => state.app.highLevelOpenStatus,
+  caseDetailNavIndex: state => state.app.caseDetailNavIndex,
   navMenuData: state => state.app.navMenuData,
   menuRouteLoaded: state => state.app.menuRouteLoaded,
   appsList: state => state.app.appsList,

@@ -15,4 +15,6 @@ module.exports = {
   sidebarLogo: false,
   /*导航应用列表开关状态*/
   appsCenterShow:false,
+  /*非全屏下案件详情需减去左侧导航宽度*/
+  
 }
