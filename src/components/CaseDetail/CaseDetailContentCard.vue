@@ -1,13 +1,16 @@
 <template>
   <div class="case-detail-content-card">
     <case-detail-content-card-title :title="caseInfo.title"></case-detail-content-card-title>
-    <div></div>
+    <div class="case-detail-content-card-content-box">
+		<case-detail-info-basic></case-detail-info-basic>
+	</div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import CaseDetailContentCardTitle from './CaseDetailContentCardTitle.vue'
+import CaseDetailInfoBasic from './CaseDetailInfoBasic.vue'
 
 export default {
   name: 'CaseDetailContentCard',
@@ -18,7 +21,7 @@ export default {
       },
     }
   },
-  components: {CaseDetailContentCardTitle},
+  components: {CaseDetailContentCardTitle,CaseDetailInfoBasic},
   computed: {
     ...mapGetters([
       'name'
@@ -38,5 +41,8 @@ export default {
     border-radius: 8px;
     overflow: hidden;
     background-color: white;
+  }
+  .case-detail-content-card-content-box{
+    padding: 24px;
   }
 </style>

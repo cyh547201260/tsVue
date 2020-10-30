@@ -1,20 +1,21 @@
 <template>
   <div class="case-detail-info-basic">
-    
+    <basic-info-list-item></basic-info-list-item>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import BasicInfoListItem from './BasicInfoListItem.vue'
 
 export default {
-  name: 'CaseDetailContentCard',
+  name: 'CaseDetailInfoBasic',
   data(){
     return{
 
     }
   },
-  components: {},
+  components: {BasicInfoListItem},
   computed: {
     ...mapGetters([
       'name'
