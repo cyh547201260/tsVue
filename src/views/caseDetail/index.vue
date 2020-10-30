@@ -3,21 +3,6 @@
       <nav-crumb-top class="nav-crumb-top-ref"></nav-crumb-top>
       <case-info-title></case-info-title>
       <case-detail-body></case-detail-body>
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      123123<br />123123<br />123123<br />123123<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
 
   </div>

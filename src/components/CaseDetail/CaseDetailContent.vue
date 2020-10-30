@@ -1,6 +1,8 @@
 <template>
   <div class="case-detail-content-box">
-    <case-detail-content-card></case-detail-content-card>
+    <template v-for="item in contObj">
+      <case-detail-content-card :infoblock="item"></case-detail-content-card>
+    </template>
   </div>
 </template>
 
@@ -12,7 +14,14 @@ export default {
   name: 'CaseDetailContent',
   data(){
     return{
+      contObj:[
+        {title:'基本信息'},
+        {title:'单证信息'},
+        {title:'理算信息'},
+        {title:'历史操作记录'},
+        {title:'操作信息'},
 
+      ]
     }
   },
   components: {CaseDetailContentCard},
@@ -32,6 +41,5 @@ export default {
 <style lang="scss" scoped>
   .case-detail-content-box{
     width: 100%;
-    height: 500px;
   }
 </style>

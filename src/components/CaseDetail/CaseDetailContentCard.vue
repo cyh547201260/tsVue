@@ -1,9 +1,9 @@
 <template>
   <div class="case-detail-content-card">
-    <case-detail-content-card-title :title="caseInfo.title"></case-detail-content-card-title>
+    <case-detail-content-card-title :title="infoblock.title"></case-detail-content-card-title>
     <div class="case-detail-content-card-content-box">
-		<case-detail-info-basic></case-detail-info-basic>
-	</div>
+      <case-detail-info-basic></case-detail-info-basic>
+    </div>
   </div>
 </template>
 
@@ -16,11 +16,9 @@ export default {
   name: 'CaseDetailContentCard',
   data(){
     return{
-      caseInfo:{
-        title:'基本信息'
-      },
     }
   },
+  props:['infoblock'],
   components: {CaseDetailContentCardTitle,CaseDetailInfoBasic},
   computed: {
     ...mapGetters([
@@ -41,6 +39,7 @@ export default {
     border-radius: 8px;
     overflow: hidden;
     background-color: white;
+    margin-bottom: 16px;
   }
   .case-detail-content-card-content-box{
     padding: 24px;
