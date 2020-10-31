@@ -2,7 +2,12 @@
   <div class="case-detail-content-card">
     <case-detail-content-card-title :title="infoblock.title"></case-detail-content-card-title>
     <div class="case-detail-content-card-content-box">
-      <case-detail-info-basic></case-detail-info-basic>
+      <template v-if="infoblock.title == '单证信息'">
+        <document-info-content-body></document-info-content-body>
+      </template>
+      <template v-else>
+        <case-detail-info-basic></case-detail-info-basic>
+      </template>
     </div>
   </div>
 </template>
@@ -10,7 +15,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import CaseDetailContentCardTitle from './CaseDetailContentCardTitle.vue'
-import CaseDetailInfoBasic from './CaseDetailInfoBasic.vue'
+import CaseDetailInfoBasic from './BasicInfo/CaseDetailInfoBasic.vue'
+import DocumentInfoContentBody from './DocumentInfo/InfoContentBody.vue'
 
 export default {
   name: 'CaseDetailContentCard',
@@ -19,7 +25,7 @@ export default {
     }
   },
   props:['infoblock'],
-  components: {CaseDetailContentCardTitle,CaseDetailInfoBasic},
+  components: {CaseDetailContentCardTitle,CaseDetailInfoBasic,DocumentInfoContentBody},
   computed: {
     ...mapGetters([
       'name'

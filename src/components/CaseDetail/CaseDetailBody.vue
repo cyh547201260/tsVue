@@ -51,5 +51,6 @@ export default {
   .case-detail-side-nav-ref{
     position: fixed;
     top: 180px;
+    z-index: 2199;
   }
 </style>

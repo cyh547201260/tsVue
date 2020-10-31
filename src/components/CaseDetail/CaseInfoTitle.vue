@@ -8,7 +8,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'CaseInfoTitle',
+  name: 'InfoTitle',
   data(){
     return{
 
