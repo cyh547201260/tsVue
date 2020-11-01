@@ -69,7 +69,7 @@ export default {
   }
 
   .app-mid-body{
-    margin-top: 60px;
+    padding-top: 60px;
   }
   .drawer-bg {
     background: #000;
@@ -99,7 +99,7 @@ export default {
   }
   #app .sidebar-container{
     top: 56px;
-    height: calc(100% - 60px);
+    height: calc(100% - 56px);
     width: 200px !important;
   }
 </style>
