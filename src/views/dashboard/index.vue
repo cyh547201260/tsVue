@@ -57,7 +57,8 @@ export default {
         }
         this.$store.dispatch("data/setListFilterOptions", res.data);
       })
-    }
+    },
+    //
   }
 }
 </script>

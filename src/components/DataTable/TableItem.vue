@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="tablekey.name == 'state'">
-        <el-table-column class="table-item"  :class-name="getItemClass(tablekey)" :width="tablecellwidth[indexkey]"  :show-overflow-tooltip="true"  :prop="tablekey.name" :label="tablekey.label" >
+        <el-table-column class="table-item"  :class-name="getItemClass(tablekey)" :width="tablecellwidth[indexkey]"  :show-overflow-tooltip="true"  :prop="tablekey.item_api_key" :label="tablekey.item_name" >
           <template slot-scope="scope">
             <el-tag class="ins-state-tag" v-if="scope.row.state == 1">理赔失败</el-tag>
             <el-tag class="ins-state-tag" v-if="scope.row.state == 2" type="success">理赔结束</el-tag>
@@ -12,7 +12,7 @@
         </el-table-column>
     </template>
     <template v-else>
-        <el-table-column class="table-item"  :class-name="getItemClass(tablekey)" :width="tablecellwidth[indexkey]"  :show-overflow-tooltip="true"  :prop="tablekey.name" :label="tablekey.label" ></el-table-column>
+        <el-table-column class="table-item"  :class-name="getItemClass(tablekey)" :width="tablecellwidth[indexkey]"  :show-overflow-tooltip="true"  :prop="tablekey.item_api_key" :label="tablekey.item_name" ></el-table-column>
     </template>
   </div>
 </template>
