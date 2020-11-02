@@ -1,8 +1,16 @@
 <template>
   <div>
-    <div class="search-input-item">
-      <el-autocomplete prefix-icon="el-icon-search" class="basic-search-input" v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入关键词查询" @select="handleSelect"></el-autocomplete>
-      <span class="high-filter-btn" @click="filterToggle()">高级筛选<i class="el-select__caret el-input__icon is-reverse el-icon-arrow-up"  :class="basicFilterClassStr" ></i></span>
+    <template v-if="filtersOptions[0].hasOwnProperty('keyword_search')"></template>
+    <div class="search-input-item" v-if="filtersOptions[0].keyword_search">
+      <el-autocomplete
+      prefix-icon="el-icon-search"
+      class="basic-search-input"
+      v-model="filtersOptions[0].keyword_search[0]['item_value']"
+      :fetch-suggestions="querySearchAsync"
+      :placeholder="filtersOptions[0].keyword_search[0].placeholder"
+      @select="handleSelect"
+      ></el-autocomplete>
+      <span class="high-filter-btn" @click="filterToggle()" v-if="filtersOptions[0].hasOwnProperty('advanced_search') && filtersOptions[0].advanced_search">高级筛选<i class="el-select__caret el-input__icon is-reverse el-icon-arrow-up"  :class="basicFilterClassStr" ></i></span>
     </div>
     <high-search :togglestate="filterHighOpenState"></high-search>
   </div>
@@ -11,7 +19,6 @@
 <script>
   import { mapGetters } from 'vuex'
   import HighSearch from './HighSearch.vue'
-
 
   export default {
     name: 'BasicSearch',
@@ -32,7 +39,13 @@
       ]),
       filterHighOpenState(){
         return this.$store.getters.highLevelOpenStatus;
+      },
+      filtersOptions(){
+        return this.$store.getters.filterOptions;
       }
+    },
+    mounted(){
+      console.log(this.filtersOptions)
     },
     methods: {
       filterToggle(){

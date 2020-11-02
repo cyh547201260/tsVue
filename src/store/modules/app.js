@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 
 const state = {
   sidebar: {
-    opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+    opened: true,
     withoutAnimation: false
   },
   device: 'desktop',
@@ -23,7 +23,7 @@ const mutations = {
     if (state.sidebar.opened) {
       Cookies.set('sidebarStatus', 1)
     } else {
-      Cookies.set('sidebarStatus', 0)
+      Cookies.set('sidebarStatus', 1)
     }
   },
   CLOSE_SIDEBAR: (state, withoutAnimation) => {

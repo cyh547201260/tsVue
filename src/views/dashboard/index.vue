@@ -14,10 +14,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { getApps,getMenusList } from '@/api/nav'
+import { getFilterOptions } from '@/api/list'
 import { getInfo } from '@/api/user'
 
-  import Layout from '@/layout'
+import Layout from '@/layout'
 import qs from 'qs'
 import SearchMenu from '../../components/Searchmenu/SearchMenu.vue'
 import DataTable from '../../components/DataTable/DataTable.vue'
@@ -36,11 +36,28 @@ export default {
   computed: {
     ...mapGetters([
       'name'
-    ])
+    ]),
+    filtersOptions(){
+      return this.$store.getters.filterOptions;
+    }
   },
   created() {
+    this.getFilterOptions();
   },
   methods: {
+    //获取筛选条件
+    getFilterOptions() {
+      getFilterOptions().then(res => {
+        for(var i in res.data[0]){
+          if(['advanced_search','keyword_search'].indexOf(i) != -1){
+            for(var j in res.data[0][i]){
+              res.data[0][i][j]['item_value'] = ''
+            }
+          }
+        }
+        this.$store.dispatch("data/setListFilterOptions", res.data);
+      })
+    }
   }
 }
 </script>

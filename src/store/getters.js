@@ -10,6 +10,8 @@ const getters = {
   addRouters: state => state.app.addRouters,
   token: state => state.user.token,
   avatar: state => state.user.avatar,
-  name: state => state.user.name
+  name: state => state.user.name,
+  filterOptions: state => state.data.filterOptions,
+  tableDataList: state => state.data.tableDataList,
 }
 export default getters
