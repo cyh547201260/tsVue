@@ -62,10 +62,8 @@
           }
         }
 
-
-
-
         getTableDataList(obj).then(res => {
+          this.$store.dispatch("data/setTableDataList", res.data);
           console.log(res)
         })
 

@@ -60,24 +60,27 @@
           name:'end_time',
           label:'结案时间'
         }],
-        tableData: [
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'2',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'3',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'4',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'5',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-          {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        // tableData: [
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'2',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'3',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'4',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'5',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
+        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
 
-        ]
+        // ]
       }
     },
     components:{TableItem},
     computed:{
       filterHighOpenState(){
         return this.$store.getters.highLevelOpenStatus;
+      },
+      tableData(){
+        return this.$store.getters.tableDataList;
       }
     },
     props: ['tablecellwidth'],
