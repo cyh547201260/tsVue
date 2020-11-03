@@ -4,17 +4,17 @@
       <search-menu></search-menu>
     </div>
     <div class="main-body-cont-box-card">
-      <data-table :tablecellwidth="tableCellWidth"></data-table>
+      <data-table :showpagination="showPagination" :tabledataobj="tableDataList" :tablekeysobj="filtersOptions['title']" :tablecellwidth="tableCellWidth"></data-table>
     </div>
-    <div class="main-body-cont-box-card">
-      <table-pagination :tablecellwidth="tableCellWidth"></table-pagination>
+    <div class="main-body-cont-box-card" v-if="showPagination">
+      <table-pagination @listpagechange="getListData()" :tablecellwidth="tableCellWidth"></table-pagination>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { getFilterOptions } from '@/api/list'
+import { getFilterOptions,getTableDataList } from '@/api/list'
 import { getInfo } from '@/api/user'
 
 import Layout from '@/layout'
@@ -27,7 +27,7 @@ export default {
   name: 'Dashboard',
   data(){
     return{
-      tableCellWidth:[70,70,110,155,220,210,80,120,100,85,160,160,80]
+      tableCellWidth:[70,70,110,155,220,200,80,120,100,85,160,160,80]
     }
   },
   components: {
@@ -39,6 +39,27 @@ export default {
     ]),
     filtersOptions(){
       return this.$store.getters.filterOptions;
+    },
+    tableDataList(){
+      console.log('-------')
+      console.log(this.$store.getters.tableDataList[0]['list_data'])
+      console.log('-------')
+      return this.$store.getters.tableDataList[0]['list_data'];
+    },
+    tableKeysObjData(){
+      return this.filtersOptions.hasOwnProperty('title') ? this.filtersOptions['title'] : {};
+    },
+    pagePageCurrentPage(){
+      return this.$store.getters.pageNum
+    },
+    pagePageTotal(){
+      return this.$store.getters.pageTotal
+    },
+    pagePageSize(){
+      return this.$store.getters.pageSize
+    },
+    showPagination(){
+      return Math.ceil(this.pagePageTotal/this.pagePageSize) > 0;
     }
   },
   created() {
@@ -55,10 +76,57 @@ export default {
             }
           }
         }
-        this.$store.dispatch("data/setListFilterOptions", res.data);
+        this.$store.dispatch("data/setListFilterOptions", res.data[0]);
+        this.searchMenuGet()
       })
     },
-    //
+    //获取表格列表
+    searchMenuGet(){
+      var needUpKeys = ['advanced_search',',keyword_search'];
+      var obj = {
+        "menu_api_key": "firstTrial",
+        "keyword_search": [],
+        "advanced_search": [],
+        // "tab": {
+        //   "item_name": "案件状态",
+        //   "item_api_key": "claim_status",
+        //   "value": 1
+        // },
+        "pagination": {
+          "page_size": this.pagePageSize,
+          "page_num": this.pagePageCurrentPage
+        }
+      }
+
+      for(let i in this.filtersOptions[0]){
+        var inobj = this.filtersOptions[0][i];
+
+        if(needUpKeys.indexOf(i) != -1){
+          for(let j in inobj){
+            if(inobj[j]['item_value']){
+              var subObj = {
+                  "item_name": inobj[j]['item_name'],
+                  "item_api_key": inobj[j]['item_api_key'],
+                  "value": inobj[j]['item_value'],
+              }
+              obj[i].push(subObj);
+            }
+          }
+        }
+      }
+
+      getTableDataList(obj).then(res => {
+        this.$store.dispatch("data/setTableDataList", res.data);
+        //设置总条数
+        this.$store.dispatch("page/setPageTotal", res.pagination.total);
+        //设置每页条数
+        this.$store.dispatch("page/setPagePageSize", res.pagination.page_size);
+      })
+
+    },
+    getListData(){
+      this.searchMenuGet();
+    }
   }
 }
 </script>

@@ -1,16 +1,17 @@
 <template>
-  <div class="data-table-box" :class="filterHighOpenState ? 'data-table-filter-open' : 'data-table-filter-close'" ref="datatablebox" id="dataTableBox">
-    <el-table :data="tableData" fit stripe style="width: 100%" height="100%">
-      <template v-for="(item,key) in tableKeys">
-        <table-item :cellwidth="getCellWidth(key)" :tablecellwidth="tablecellwidth" :tabledata="tableData" :tablekey="item" :indexkey="key"></table-item>
-      </template>
-      <el-table-column fixed="right" label="操作" width="100">
-        <template slot-scope="scope">
-          <el-button @click="goCaseDetail(scope.row)" type="primary" size="small">查看</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
+  <div class="data-table-box" ref="dataTableContentBox" :class="filterHighOpenState ? 'data-table-filter-open' : 'data-table-filter-close'" >
+    <div style="width: 100%;height: 100%;" >
+      <el-table :data="tabledataobj" ref="dataTableBox" fit stripe style="width: 100%" :height="tableHeight">
+          <template v-for="(item,key,index) in tablekeysobj">
+            <table-item  :fullcellwidth="fullCellWidth"  :fullboxwidth="dataTableBoxWidth" :tableitemdataobj="tabledataobj" :tablecellwidth="tablecellwidth" :tabledata="tableData" :tablekey="item" :indexkey="key"></table-item>
+          </template>
+          <el-table-column fixed="right" label="操作" width="100">
+            <template slot-scope="scope">
+              <el-button @click="goCaseDetail(scope.row)" type="primary" size="small">查看</el-button>
+            </template>
+          </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 
@@ -23,81 +24,58 @@
     data(){
       return{
         bodyClientWidth:0,
-        tableKeys:[{
-          name:'id',
-          label:'案件ID'
-        },{
-          name:'name',
-          label:'姓名'
-        },{
-          name:'phone',
-          label:'手机号'
-        },{
-          name:'certcode',
-          label:'身份证号'
-        },{
-          name:'insurcompany',
-          label:'公司名称'
-        },{
-          name:'company',
-          label:'保险公司'
-        },{
-          name:'amount',
-          label:'申请金额'
-        },{
-          name:'product_type',
-          label:'产品类型'
-        },{
-          name:'state',
-          label:'状态'
-        },{
-          name:'person',
-          label:'审核人员'
-        },{
-          name:'create_time',
-          label:'申请时间'
-        },{
-          name:'end_time',
-          label:'结案时间'
-        }],
-        // tableData: [
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'2',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'3',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'4',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'5',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-        //   {id:'1232321',name:'阿呆',phone:'155555555555',certcode:'142111448841445541',insurcompany:'北京保险极客有限公司上海分公司',company:'复星俩呢和健康保险股份公司',amount:'678.00',product_type:'补充医疗-门急诊',state:'1',person:'理解',create_time:'2020-10-08 12:20',end_time:'2020-11-08 12:22'},
-
-        // ]
+        tableHeight:'100%',
+        tableInitState:false,
       }
     },
     components:{TableItem},
     computed:{
       filterHighOpenState(){
+        if(this.tableInitState){
+          this.getTableBoxHeight();
+        }
         return this.$store.getters.highLevelOpenStatus;
       },
       tableData(){
         return this.$store.getters.tableDataList;
-      }
+      },
+      dataTableBoxWidth(){
+        return this.$refs.dataTableBox.$el.clientWidth -100;
+      },
+      fullCellWidth(){
+        var num = 0;
+        for(var i = 0; i < this.tablekeysobj.length ; i++){
+          num += this.tablecellwidth[i];
+        }
+        if(num < this.dataTableBoxWidth){
+          return num;
+        }else{
+          return 0;
+        }
+      },
     },
-    props: ['tablecellwidth'],
+    props: ['tablecellwidth','tablekeysobj','tabledataobj'],
     created(){
       this.getClientWidth();
     },
+    watch:{
+      tabledataobj(){
+        this.tableInitState = true;
+        this.getTableBoxHeight();
+      }
+    },
     methods: {
+
       getClientWidth(){
         this.bodyClientWidth = document.body.offsetWidth -232;
       },
-      getCellWidth(cellkey){
-          return this.tablecellwidth[cellkey]
-        // console.log(this.$refs.datatablebox.clientWidth)
+      getTableBoxHeight(){
+        setTimeout(() => {
+          this.tableHeight = this.$refs.dataTableContentBox.clientHeight;
+        },0)
       },
       goCaseDetail(data){
-        this.$router.push({path:'/caseDetail/index', query:{id:data.id}})
-        console.log(data)
+        // this.$router.push({path:'/caseDetail/index', query:{id:data.id}})
       }
     }
   }

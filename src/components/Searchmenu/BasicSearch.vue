@@ -1,16 +1,22 @@
 <template>
   <div>
-    <template v-if="filtersOptions[0].hasOwnProperty('keyword_search')"></template>
-    <div class="search-input-item" v-if="filtersOptions[0].keyword_search">
+    <template v-if="filtersOptions.hasOwnProperty('keyword_search')"></template>
+    <div class="search-input-item" v-if="filtersOptions.keyword_search">
       <el-autocomplete
       prefix-icon="el-icon-search"
       class="basic-search-input"
-      v-model="filtersOptions[0].keyword_search[0]['item_value']"
-      :fetch-suggestions="querySearchAsync"
-      :placeholder="filtersOptions[0].keyword_search[0].placeholder"
+      v-model="filtersOptions.keyword_search[0]['item_value']"
+      :fetch-suggestions="basicSearchGetFun"
+      :placeholder="filtersOptions.keyword_search[0].placeholder"
+      :trigger-on-focus="false"
       @select="handleSelect"
-      ></el-autocomplete>
-      <span class="high-filter-btn" @click="filterToggle()" v-if="filtersOptions[0].hasOwnProperty('advanced_search') && filtersOptions[0].advanced_search">高级筛选<i class="el-select__caret el-input__icon is-reverse el-icon-arrow-up"  :class="basicFilterClassStr" ></i></span>
+      >
+        <template slot-scope="{ item }">
+          <div class="name">{{ item.value }}</div>
+          <span class="addr">{{ item.address }}</span>
+        </template>
+      </el-autocomplete>
+      <span class="high-filter-btn" @click="filterToggle()" v-if="filtersOptions.hasOwnProperty('advanced_search') && filtersOptions.advanced_search">高级筛选<i class="el-select__caret el-input__icon is-reverse el-icon-arrow-up"  :class="basicFilterClassStr" ></i></span>
     </div>
     <high-search :togglestate="filterHighOpenState"></high-search>
   </div>
@@ -63,6 +69,13 @@
         this.timeout = setTimeout(() => {
           cb(results);
         }, 3000 * Math.random());
+      },
+      basicSearchGetFun(queryString, cb) {
+        console.log(queryString)
+        // var restaurants = this.restaurants;
+        // var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+        // // 调用 callback 返回建议列表的数据
+        // cb(results);
       },
     }
   }

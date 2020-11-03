@@ -5,12 +5,11 @@
 
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="pagePageCurrentPage"
+      :page-sizes="pageSizes"
+      :page-size="pagePageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
-
+      :total="pagePageTotal"
 
       >
     </el-pagination>
@@ -19,14 +18,40 @@
 </template>
 
 <script>
-
+  import { mapGetters } from 'vuex'
   import TableItem from './TableItem.vue'
 
   export default {
     name: 'TablePagination',
     data(){
       return{
-        currentPage4:1
+        currentPage:1,
+        pageSizes:[10, 20, 30, 40, 50],
+      }
+    },
+    computed:{
+      ...mapGetters([
+        'name'
+      ]),
+      pageInfo(){
+        return this.$store.getters.pageData;
+      },
+      pagePageCurrentPage(){
+        return this.$store.getters.pageNum
+      },
+      pagePageTotal(){
+        return this.$store.getters.pageTotal
+      },
+      pagePageSize(){
+        return this.$store.getters.pageSize
+      },
+    },
+    watch:{
+      pageInfo(){
+        console.log(this.pageInfo)
+      },
+      pagePageSize(){
+        console.log(this.pagePageSize)
       }
     },
     components:{},
@@ -34,10 +59,12 @@
     created(){},
     methods: {
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+        this.$store.dispatch("page/setPagePageSize", val);
+        this.$emit('listpagechange');
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+        this.$store.dispatch("page/setPageCurrentPage", val);
+        this.$emit('listpagechange');
       }
     }
   }

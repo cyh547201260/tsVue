@@ -13,5 +13,10 @@ const getters = {
   name: state => state.user.name,
   filterOptions: state => state.data.filterOptions,
   tableDataList: state => state.data.tableDataList,
+  pageData: state => state.data.pageData,
+
+  pageTotal: state => state.page.pageTotal,
+  pageNum: state => state.page.pageNum,
+  pageSize: state => state.page.pageSize,
 }
 export default getters

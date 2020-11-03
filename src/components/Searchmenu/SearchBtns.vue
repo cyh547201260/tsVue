@@ -45,8 +45,8 @@
           }
         }
 
-        for(let i in this.filtersOptions[0]){
-          var inobj = this.filtersOptions[0][i];
+        for(let i in this.filtersOptions){
+          var inobj = this.filtersOptions[i];
 
           if(needUpKeys.indexOf(i) != -1){
             for(let j in inobj){
@@ -70,8 +70,8 @@
 
       },
       searchMenuReset(){
-        for(var i in this.filtersOptions[0]['advanced_search']){
-          this.filtersOptions[0]['advanced_search'][i]['item_value'] = '';
+        for(var i in this.filtersOptions['advanced_search']){
+          this.filtersOptions['advanced_search'][i]['item_value'] = '';
         }
       }
     }

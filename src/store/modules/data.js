@@ -3,7 +3,8 @@ import Cookies from 'js-cookie'
 const state = {
   caseDetailNavIndex:1,
   filterOptions:[{}],
-  tableDataList:[],
+  tableDataList:[{list_data:[]}],
+  pageData:{},
 }
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
   SET_TABLE_DATA_LIST: (state,data) =>{
     state.tableDataList = data
   },
+  SET_PAGE_DATA: (state,data) =>{
+    state.pageData = data
+  },
 }
 
 const actions = {
@@ -27,6 +31,9 @@ const actions = {
   },
   setTableDataList({ commit },data) {
     commit('SET_TABLE_DATA_LIST',data)
+  },
+  setPageData({ commit },data) {
+    commit('SET_PAGE_DATA',data)
   },
 }
 
