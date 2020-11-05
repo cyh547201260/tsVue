@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
     <div class="main-body-cont-box-card">
-      <search-menu></search-menu>
+      <search-menu @listpagechange="getListData()" @keywordsearchfun="keywordSearchFunGet"></search-menu>
     </div>
     <div class="main-body-cont-box-card">
       <data-table :showpagination="showPagination" :tabledataobj="tableDataList" :tablekeysobj="filtersOptions['title']" :tablecellwidth="tableCellWidth"></data-table>
@@ -50,7 +50,7 @@ export default {
       return this.filtersOptions.hasOwnProperty('title') ? this.filtersOptions['title'] : {};
     },
     pagePageCurrentPage(){
-      return this.$store.getters.pageNum
+      return this.$store.getters.currentPage
     },
     pagePageTotal(){
       return this.$store.getters.pageTotal
@@ -82,7 +82,7 @@ export default {
     },
     //获取表格列表
     searchMenuGet(){
-      var needUpKeys = ['advanced_search',',keyword_search'];
+      var needUpKeys = ['advanced_search','keyword_search'];
       var obj = {
         "menu_api_key": "firstTrial",
         "keyword_search": [],
@@ -98,11 +98,11 @@ export default {
         }
       }
 
-      for(let i in this.filtersOptions[0]){
-        var inobj = this.filtersOptions[0][i];
-
+      for(let i in this.filtersOptions){
         if(needUpKeys.indexOf(i) != -1){
+          var inobj = this.filtersOptions[i];
           for(let j in inobj){
+          console.log('----SSS',inobj[j])
             if(inobj[j]['item_value']){
               var subObj = {
                   "item_name": inobj[j]['item_name'],
@@ -114,6 +114,8 @@ export default {
           }
         }
       }
+      console.log(obj)
+      // obj.advanced_search =
 
       getTableDataList(obj).then(res => {
         this.$store.dispatch("data/setTableDataList", res.data);
@@ -125,6 +127,9 @@ export default {
 
     },
     getListData(){
+      this.searchMenuGet();
+    },
+    keywordSearchFunGet(){
       this.searchMenuGet();
     }
   }

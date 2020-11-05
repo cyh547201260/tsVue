@@ -3,11 +3,15 @@
     <template v-for="item in contObj">
       <case-detail-content-card :infoblock="item"></case-detail-content-card>
     </template>
+
+
+    <bottom-operation></bottom-operation>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import BottomOperation from './BottomOperation/BottomOperation.vue'
 import CaseDetailContentCard from './CaseDetailContentCard.vue'
 
 export default {
@@ -19,12 +23,12 @@ export default {
         {title:'单证信息'},
         {title:'理算信息'},
         {title:'历史操作记录'},
-        {title:'操作信息'},
+        {title:'案件操作'},
 
       ]
     }
   },
-  components: {CaseDetailContentCard},
+  components: {CaseDetailContentCard,BottomOperation},
   computed: {
     ...mapGetters([
       'name'

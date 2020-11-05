@@ -29,45 +29,7 @@
     mounted(){},
     methods: {
       searchMenuGet(){
-        var needUpKeys = ['advanced_search',',keyword_search'];
-        var obj = {
-          "menu_api_key": "firstTrial",
-          "keyword_search": [],
-          "advanced_search": [],
-          // "tab": {
-          //   "item_name": "案件状态",
-          //   "item_api_key": "claim_status",
-          //   "value": 1
-          // },
-          "pagination": {
-            "page_size": 20,
-            "page_num": 1
-          }
-        }
-
-        for(let i in this.filtersOptions){
-          var inobj = this.filtersOptions[i];
-
-          if(needUpKeys.indexOf(i) != -1){
-            for(let j in inobj){
-              if(inobj[j]['item_value']){
-                var subObj = {
-                    "item_name": inobj[j]['item_name'],
-                    "item_api_key": inobj[j]['item_api_key'],
-                    "value": inobj[j]['item_value'],
-                }
-                obj[i].push(subObj);
-              }
-            }
-          }
-        }
-
-        getTableDataList(obj).then(res => {
-          this.$store.dispatch("data/setTableDataList", res.data);
-          console.log(res)
-        })
-
-
+        this.$emit('parentgetlist')
       },
       searchMenuReset(){
         for(var i in this.filtersOptions['advanced_search']){

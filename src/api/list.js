@@ -17,3 +17,13 @@ export function getTableDataList(data) {
     data
   })
 }
+
+export function getKeywordSearchList(params) {
+  return request({
+    headers:{'Authorization':'123','Content-Type':'application/json'},
+    url: process.env.VUE_APP_SERVER_API+'/claim/claim/v1/cases/action/search',
+    method: 'get',
+    params
+  })
+}
+

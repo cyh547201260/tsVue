@@ -14,7 +14,7 @@
         </template>
       </template>
 
-      <search-btns v-if="filtersOptions.hasOwnProperty('advanced_search')"></search-btns>
+      <search-btns @parentgetlist="parentgetlist" v-if="filtersOptions.hasOwnProperty('advanced_search')"></search-btns>
 
     </div>
   </div>
@@ -58,6 +58,9 @@
       console.log(this.togglestate)
     },
     methods: {
+      parentgetlist(){
+        this.$emit('parentgetlist')
+      },
       resuChange(){
         console.log(this.filtersOptions.advanced_search)
       },

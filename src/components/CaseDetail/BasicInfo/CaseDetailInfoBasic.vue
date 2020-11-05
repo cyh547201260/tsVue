@@ -1,5 +1,8 @@
 <template>
   <div class="case-detail-info-basic">
+    <div class="basic-edit-box">
+      <title-btn :btnicon="'el-icon-edit'" :btnname="'编辑'"></title-btn>
+    </div>
     <template v-for="item in basicInfo">
       <basic-info-list-item :infodata="item"></basic-info-list-item>
     </template>
@@ -9,6 +12,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import BasicInfoListItem from './BasicInfoListItem.vue'
+import TitleBtn from '../AdjustmentInfo/AdjustmentInfoTitleBtn.vue'
 
 export default {
   name: 'CaseDetailInfoBasic',
@@ -31,7 +35,7 @@ export default {
           list:[
             {title:'银行名称',value:'中国银行',highlight:false},
             {title:'开户地区',value:'北京-北京',highlight:false},
-            {title:'银行账号',value:'2020/02/18 00:00:00 - 2021/12/23 23:59:59',highlight:true},
+            {title:'银行账号',value:'2020/02/18 - 2021/12/23',highlight:true},
             {title:'收款人',value:'张三丰',highlight:false},
             {title:'证件号码',value:'身份证-110101199602182541',highlight:false},
             {title:'被保人类型',value:'主保险人',highlight:false},
@@ -56,7 +60,7 @@ export default {
       ]
     }
   },
-  components: {BasicInfoListItem},
+  components: {BasicInfoListItem,TitleBtn},
   computed: {
     ...mapGetters([
       'name'
@@ -71,4 +75,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .basic-edit-box{
+    text-align: right;
+    padding-bottom: 10px;
+    margin-top: -10px;
+  }
 </style>

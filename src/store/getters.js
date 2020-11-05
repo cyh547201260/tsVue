@@ -18,5 +18,6 @@ const getters = {
   pageTotal: state => state.page.pageTotal,
   pageNum: state => state.page.pageNum,
   pageSize: state => state.page.pageSize,
+  currentPage: state => state.page.currentPage,
 }
 export default getters

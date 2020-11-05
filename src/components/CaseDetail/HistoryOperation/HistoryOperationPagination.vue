@@ -1,8 +1,7 @@
 <template>
-  <div class="table-pagination-box" >
+  <div class="history-operation-pagination-box" >
     <el-pagination
       background
-
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="pagePageCurrentPage"
@@ -10,7 +9,6 @@
       :page-size="pagePageSize"
       layout="total, sizes, prev, pager, next, jumper"
       :total="pagePageTotal"
-
       >
     </el-pagination>
 
@@ -19,10 +17,9 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import TableItem from './TableItem.vue'
 
   export default {
-    name: 'TablePagination',
+    name: 'HistoryOperationPagination',
     data(){
       return{
         currentPage:1,
@@ -73,5 +70,10 @@
 <style scoped>
   .table-pagination-box{
     text-align: right;
+  }
+  .history-operation-pagination-box{
+    text-align: right;
+    padding: 10px 20px 10px 0;
+    color: #606266;
   }
 </style>

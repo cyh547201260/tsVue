@@ -54,7 +54,7 @@
         }
       },
     },
-    props: ['tablecellwidth','tablekeysobj','tabledataobj'],
+    props: ['tablecellwidth','tablekeysobj','tabledataobj','showpagination'],
     created(){
       this.getClientWidth();
     },

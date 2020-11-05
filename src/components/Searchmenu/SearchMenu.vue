@@ -1,7 +1,7 @@
 <template>
   <div class="search-menu-box">
     <div class="search-box-title">案件查询</div>
-    <basic-search></basic-search>
+    <basic-search @parentgetlist="listpagechange" @keywordsearch="keyWordSearch"></basic-search>
 
   </div>
 </template>
@@ -17,6 +17,12 @@
     props: {
     },
     methods: {
+      listpagechange(){
+        this.$emit('listpagechange')
+      },
+      keyWordSearch(){
+        this.$emit('keywordsearchfun')
+      }
     }
   }
 </script>
