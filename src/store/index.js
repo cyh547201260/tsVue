@@ -6,6 +6,7 @@ import settings from './modules/settings'
 import user from './modules/user'
 import data from './modules/data'
 import page from './modules/page'
+import detail from './modules/detail'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
     settings,
     user,
     data,
-    page
+    page,
+    detail
   },
   getters
 })

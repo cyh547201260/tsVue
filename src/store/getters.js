@@ -19,5 +19,8 @@ const getters = {
   pageNum: state => state.page.pageNum,
   pageSize: state => state.page.pageSize,
   currentPage: state => state.page.currentPage,
+
+  drawerOpenState: state => state.detail.drawerOpenState,
+  drawerOpenType: state => state.detail.drawerOpenType,
 }
 export default getters

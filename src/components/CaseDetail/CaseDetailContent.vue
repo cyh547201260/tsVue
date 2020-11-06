@@ -6,6 +6,8 @@
 
 
     <bottom-operation></bottom-operation>
+
+    <!-- <case-detail-drawer-box></case-detail-drawer-box> -->
   </div>
 </template>
 

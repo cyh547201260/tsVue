@@ -1,7 +1,8 @@
 <template>
   <div class="drawer-box">
     <el-drawer
-      :visible.sync="drawer"
+      title="修改收款信息"
+      :visible.sync="drawerOpenState"
       :direction="direction"
       :before-close="handleClose">
       <span>我来啦!</span>
@@ -21,11 +22,19 @@ export default {
 
     }
   },
+  props:['draweropen'],
   components: {CaseDetailSideNav,CaseDetailContent},
   computed: {
     ...mapGetters([
       'name'
-    ])
+    ]),
+    drawerOpenState(){
+      return this.$store.getters.drawerOpenState
+    },
+    drawerOpenType(){
+      return this.$store.getters.drawerOpenType
+    }
+
   },
   created() {
   },

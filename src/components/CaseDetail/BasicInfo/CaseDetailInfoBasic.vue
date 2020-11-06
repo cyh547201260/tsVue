@@ -1,6 +1,6 @@
 <template>
   <div class="case-detail-info-basic">
-    <div class="basic-edit-box">
+    <div class="basic-edit-box" @click="bankInfoEdit">
       <title-btn :btnicon="'el-icon-edit'" :btnname="'编辑'"></title-btn>
     </div>
     <template v-for="item in basicInfo">
@@ -69,6 +69,10 @@ export default {
   created() {
   },
   methods: {
+    bankInfoEdit(){
+      console.log(12313)
+      this.$store.dispatch("detail/setDrawerOpenState", true);
+    }
   }
 }
 
