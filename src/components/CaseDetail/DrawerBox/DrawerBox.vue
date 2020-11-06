@@ -1,29 +1,28 @@
 <template>
   <div class="drawer-box">
-    <el-drawer
-      title="修改收款信息"
-      :visible.sync="drawerOpenState"
-      :direction="direction"
-      :before-close="handleClose">
-      <span>我来啦!</span>
+    <el-drawer :title="drawerOpenTitle" :visible.sync="drawerOpenState" :direction="direction" :size="drawerOpenSize" :before-close="handleClose">
+      <div class="drawer-content-box">
+        <template v-if="drawerOpenType == 'editCollection'">
+          <edit-collection></edit-collection>
+        </template>
+      </div>
     </el-drawer>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import CaseDetailSideNav from './CaseDetailSideNav.vue'
-import CaseDetailContent from './CaseDetailContent.vue'
+import EditCollection from './EditCollection.vue'
 
 export default {
-  name: 'CaseDetailBody',
+  name: 'DrawerBox',
   data(){
     return{
-
+      direction:'rtl'
     }
   },
   props:['draweropen'],
-  components: {CaseDetailSideNav,CaseDetailContent},
+  components: {EditCollection},
   computed: {
     ...mapGetters([
       'name'
@@ -33,12 +32,27 @@ export default {
     },
     drawerOpenType(){
       return this.$store.getters.drawerOpenType
+    },
+    drawerOpenSize(){
+      return this.$store.getters.drawerOpenSize
+    },
+    drawerOpenTitle(){
+      return this.$store.getters.drawerOpenTitle
     }
+
 
   },
   created() {
   },
   methods: {
+    handleClose(done) {
+      // this.$confirm('确认关闭？')
+      //   .then(_ => {
+          // done();
+          this.$store.dispatch("detail/setDrawerOpenState", false);
+        // })
+        // .catch(_ => {});
+    }
   }
 }
 
@@ -61,5 +75,13 @@ export default {
     position: fixed;
     top: 180px;
     z-index: 2199;
+  }
+  .drawer-content-box{
+    padding: 0 16px;
+  }
+</style>
+<style>
+  .drawer-box .el-drawer__wrapper{
+    z-index: 2200 !important;
   }
 </style>

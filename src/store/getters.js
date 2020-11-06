@@ -22,5 +22,9 @@ const getters = {
 
   drawerOpenState: state => state.detail.drawerOpenState,
   drawerOpenType: state => state.detail.drawerOpenType,
+  drawerOpenSize: state => state.detail.drawerOpenSize,
+  drawerOpenTitle: state => state.detail.drawerOpenTitle,
+  
+  
 }
 export default getters

@@ -6,8 +6,8 @@
 
 
     <bottom-operation></bottom-operation>
-
-    <!-- <case-detail-drawer-box></case-detail-drawer-box> -->
+    
+    <drawer-box></drawer-box>
   </div>
 </template>
 
@@ -15,6 +15,7 @@
 import { mapGetters } from 'vuex'
 import BottomOperation from './BottomOperation/BottomOperation.vue'
 import CaseDetailContentCard from './CaseDetailContentCard.vue'
+import DrawerBox from './DrawerBox/DrawerBox.vue'
 
 export default {
   name: 'CaseDetailContent',
@@ -30,7 +31,7 @@ export default {
       ]
     }
   },
-  components: {CaseDetailContentCard,BottomOperation},
+  components: {CaseDetailContentCard,BottomOperation,DrawerBox},
   computed: {
     ...mapGetters([
       'name'

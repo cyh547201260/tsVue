@@ -37,7 +37,7 @@
     left: 0;
     top: 0;
     height: 56px;
-    z-index: 99999;
+    z-index: 2000;
     display: flex;
     display: -webkit-flex;
     box-shadow: 0px 2px 4px 0px rgba(231, 231, 231, 0.5);

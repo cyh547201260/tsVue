@@ -1,7 +1,7 @@
 <template>
   <div class="case-detail-info-basic">
-    <div class="basic-edit-box" @click="bankInfoEdit">
-      <title-btn :btnicon="'el-icon-edit'" :btnname="'编辑'"></title-btn>
+    <div class="basic-edit-box">
+      <title-btn @btnclick="bankInfoEdit" :btnicon="'el-icon-edit'" :btnname="'编辑'"></title-btn>
     </div>
     <template v-for="item in basicInfo">
       <basic-info-list-item :infodata="item"></basic-info-list-item>
@@ -70,8 +70,10 @@ export default {
   },
   methods: {
     bankInfoEdit(){
-      console.log(12313)
       this.$store.dispatch("detail/setDrawerOpenState", true);
+      this.$store.dispatch("detail/setDrawerOpenSize", '30%');
+      this.$store.dispatch("detail/setDrawerOpenType", 'editCollection');
+      this.$store.dispatch("detail/setDrawerOpenTitle", '修改收款信息');
     }
   }
 }

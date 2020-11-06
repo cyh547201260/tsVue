@@ -1,6 +1,6 @@
 <template>
   <div class="adjustment-info-title-btn">
-    <div class="title-btn-icon-box"><i :class="btnicon"></i></div> <span class="btn-name" v-text="btnname"></span>
+    <div class="btn-outer-box" @click="btnclick"><div class="title-btn-icon-box"><i :class="btnicon"></i></div> <span class="btn-name" v-text="btnname"></span></div>
   </div>
 </template>
 
@@ -23,6 +23,9 @@ export default {
   created() {
   },
   methods: {
+    btnclick(){
+      this.$emit('btnclick');
+    }
   }
 }
 
@@ -38,6 +41,9 @@ export default {
     line-height: 24px;
     background: rgba(46, 198, 181, .13);
     user-select: none;
+  }
+  .btn-outer-box{
+    display: inline-block;
   }
   .title-btn-icon-box i{
     color: #2EC6B5;

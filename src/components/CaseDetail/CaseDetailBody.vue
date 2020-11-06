@@ -3,7 +3,7 @@
     <div class="case-detail-cont-left">
       <case-detail-side-nav class="case-detail-side-nav-ref"></case-detail-side-nav>
     </div>
-    <div class="case-detail-cont-right">
+    <div class="case-detail-cont-right">*
       <case-detail-content></case-detail-content>
     </div>
   </div>
@@ -51,6 +51,6 @@ export default {
   .case-detail-side-nav-ref{
     position: fixed;
     top: 180px;
-    z-index: 2199;
+    z-index: 1999;
   }
 </style>
