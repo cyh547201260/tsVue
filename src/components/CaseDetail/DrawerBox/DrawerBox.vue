@@ -1,6 +1,6 @@
 <template>
   <div class="drawer-box">
-    <el-drawer ref="editCollectionDrawer" :title="drawerOpenTitle" :modal-append-to-body="false" :visible.sync="drawerOpenState" :direction="direction" :size="drawerOpenSize" :before-close="closeDrawer">
+    <el-drawer ref="editCollectionDrawer" :title="drawerOpenTitle" :modal="false" :modal-append-to-body="false" :visible.sync="drawerOpenState" :direction="direction" :size="drawerOpenSize" :before-close="closeDrawer">
       <el-scrollbar class='desc-wrapper' wrap-class="scrollbar-wrapper">
 
         <div class="drawer-content-box">
