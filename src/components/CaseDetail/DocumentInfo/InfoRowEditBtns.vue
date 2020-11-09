@@ -2,7 +2,7 @@
   <div class="document-info-edit-btns-box">
     <div class="btns-cont-box">
       <el-button type="primary" plain size="small">编辑发票</el-button>
-      <el-button type="primary" plain size="small">单证标记</el-button>
+      <el-button type="primary" plain size="small" @click="documentMarkingShow()">单证标记</el-button>
     </div>
   </div>
 </template>
@@ -24,6 +24,9 @@ export default {
   created() {
   },
   methods: {
+	  documentMarkingShow(){
+		  this.$store.dispatch("detail/setDrawerOpenData", {state:true,size:'30%',type:'documentMarking',title:'单证标记'});
+	  }
   }
 }
 

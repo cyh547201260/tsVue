@@ -1,11 +1,18 @@
 <template>
   <div class="drawer-box">
-    <el-drawer :title="drawerOpenTitle" :visible.sync="drawerOpenState" :direction="direction" :size="drawerOpenSize" :before-close="handleClose">
-      <div class="drawer-content-box">
-        <template v-if="drawerOpenType == 'editCollection'">
-          <edit-collection></edit-collection>
-        </template>
-      </div>
+    <el-drawer ref="editCollectionDrawer" :title="drawerOpenTitle" :modal-append-to-body="false" :visible.sync="drawerOpenState" :direction="direction" :size="drawerOpenSize" :before-close="closeDrawer">
+      <el-scrollbar class='desc-wrapper' wrap-class="scrollbar-wrapper">
+
+        <div class="drawer-content-box">
+          <template v-if="drawerOpenType == 'editCollection'">
+            <edit-collection @drawerclose='closeDrawer' ></edit-collection>
+          </template>
+          <template v-if="drawerOpenType == 'documentMarking'">
+            <document-marking @drawerclose='closeDrawer' ></document-marking>
+          </template>
+        </div>
+
+      </el-scrollbar>
     </el-drawer>
   </div>
 </template>
@@ -13,6 +20,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import EditCollection from './EditCollection.vue'
+import documentMarking from './DocumentMarking.vue'
 
 export default {
   name: 'DrawerBox',
@@ -22,7 +30,7 @@ export default {
     }
   },
   props:['draweropen'],
-  components: {EditCollection},
+  components: {EditCollection,documentMarking},
   computed: {
     ...mapGetters([
       'name'
@@ -45,7 +53,7 @@ export default {
   created() {
   },
   methods: {
-    handleClose(done) {
+    closeDrawer(done) {
       // this.$confirm('确认关闭？')
       //   .then(_ => {
           // done();
@@ -74,14 +82,29 @@ export default {
   .case-detail-side-nav-ref{
     position: fixed;
     top: 180px;
-    z-index: 2199;
+    z-index: 2012;
   }
   .drawer-content-box{
-    padding: 0 16px;
+    padding: 0 16px 70px 16px;
+  }
+  .desc-wrapper{
+    height: calc(100vh - 77px);
+    overflow-x: hidden;
   }
 </style>
 <style>
-  .drawer-box .el-drawer__wrapper{
-    z-index: 2200 !important;
-  }
+ <style>
+   .drawer-box .el-scrollbar__bar.is-vertical{
+     background: rgba(155,155,155,.5);
+   }
+   .drawer-box .el-scrollbar__wrap{
+     overflow: hidden;
+   }
+   .drawer-box .el-scrollbar__thumb{
+     background: #999;
+   }
+   .drawer-box .scrollbar-wrapper.el-scrollbar__wrap{
+     margin: 0 !important;
+   }
+ </style>
 </style>

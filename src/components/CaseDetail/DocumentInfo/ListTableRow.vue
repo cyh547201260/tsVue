@@ -3,7 +3,10 @@
     <div class="info-row table-title-row-1">
       <div class="row-image">
         <div class="row-image-cont-box">
-          <img src="123123" alt="" />
+          <el-popover placement="right" width="282"  trigger="hover"><!-- -->
+            <img style="width: 100%;cursor: pointer;" @click="openDocumentImage" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="">
+            <img slot="reference" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="" />
+          </el-popover>
         </div>
       </div>
     </div>
@@ -55,6 +58,9 @@ export default {
   created() {
   },
   methods: {
+    openDocumentImage(){
+      this.$store.dispatch('detail/setImageBoxState',true);
+    }
   }
 }
 

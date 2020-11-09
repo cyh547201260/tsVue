@@ -1,8 +1,11 @@
 <template>
   <div class="document-info-list-other-list-item">
     <div class="other-list-item-top">
-      <div class="item-top-img-box">
-        <img src="123123123" alt="" />
+      <div class="item-top-img-box" >
+        <el-popover placement="right" width="282"  trigger="hover"><!-- -->
+          <img style="width: 100%;cursor: pointer;" @click="openDocumentImage" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="">
+          <img slot="reference" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="" />
+        </el-popover>
       </div>
       <div class="item-top-img-desc">
         <el-scrollbar class='desc-wrapper' wrap-class="scrollbar-wrapper">
@@ -42,6 +45,9 @@ export default {
   created() {
   },
   methods: {
+    openDocumentImage(){
+      this.$store.dispatch('detail/setImageBoxState',true);
+    }
   }
 }
 
@@ -72,7 +78,6 @@ export default {
     width: 100%;
     height: 100%;
     background: pink;
-    cursor: pointer;
   }
   .item-top-img-desc{
     position: absolute;

@@ -70,10 +70,8 @@ export default {
   },
   methods: {
     bankInfoEdit(){
-      this.$store.dispatch("detail/setDrawerOpenState", true);
-      this.$store.dispatch("detail/setDrawerOpenSize", '30%');
-      this.$store.dispatch("detail/setDrawerOpenType", 'editCollection');
-      this.$store.dispatch("detail/setDrawerOpenTitle", '修改收款信息');
+      //打开弹出抽屉并设置基本信息
+      this.$store.dispatch("detail/setDrawerOpenData", {state:true,size:'30%',type:'editCollection',title:'修改收款信息'});
     }
   }
 }

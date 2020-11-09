@@ -25,9 +25,11 @@
           </template>
         </el-form-item>
       </template>
-
-
     </el-form>
+    <div class="edit-collection-bot-btn-box">
+      <el-button type="info" plain @click="boxClose()">取消</el-button>
+      <el-button type="primary" @click="boxSave()">保存</el-button>
+    </div>
   </div>
 </template>
 
@@ -97,7 +99,20 @@ export default {
   },
   created() {
   },
-  methods: {}
+  methods: {
+    boxClose(){
+      this.$confirm('表单内容已修改，关闭后已修改内容不保存','确定关闭弹窗？',{type: 'warning'})
+      .then(_ => {
+        this.$emit('drawerclose');
+      })
+      .catch(_ => {});
+
+    },
+    boxSave(){
+      console.log('save');
+      this.boxClose()
+    }
+  }
 }
 
 </script>
@@ -120,5 +135,12 @@ export default {
   }
   .edit-collection .el-checkbox{
     margin-right: 7px;
+  }
+  .edit-collection-bot-btn-box{
+    text-align: right;
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    right: 25px;
   }
 </style>
