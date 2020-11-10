@@ -43,6 +43,6 @@ export default {
   .nav-crumb-top-ref{
     position: fixed;
     width: calc(100vw - 267px);
-    z-index: 1999;
+    z-index: 1996;
   }
 </style>

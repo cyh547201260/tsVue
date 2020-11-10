@@ -13,8 +13,11 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
-import TopNav from './components/TopNav.vue'
+import Sidebar from '../components/Public/Sidebar/index.vue'
+import AppMain from '../components/Public/AppMain.vue'
+import Navbar from '../components/Public/Navbar.vue'
+
+import TopNav from '../components/Public/TopNav.vue'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {

@@ -19,9 +19,9 @@ import { getInfo } from '@/api/user'
 
 import Layout from '@/layout'
 import qs from 'qs'
-import SearchMenu from '../../components/Searchmenu/SearchMenu.vue'
-import DataTable from '../../components/DataTable/DataTable.vue'
-import TablePagination from '../../components/DataTable/TablePagination.vue'
+import SearchMenu from '../../components/Claim/Searchmenu/SearchMenu.vue'
+import DataTable from '../../components/Public/DataTable/DataTable.vue'
+import TablePagination from '../../components/Public/DataTable/TablePagination.vue'
 
 export default {
   name: 'Dashboard',

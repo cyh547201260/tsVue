@@ -2,6 +2,9 @@
   <div :class="{'has-logo':showLogo}">
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
+      <div class="sidebar-system-name">
+        <i class=""></i><span>理赔中心</span>
+      </div>
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
@@ -58,3 +61,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .sidebar-system-name{
+    font-size: 16px;
+    color: white;
+    padding-left: 23px;
+    height: 46px;
+    line-height: 46px;
+    padding-top: 8px;
+  }
+</style>
