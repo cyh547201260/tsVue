@@ -15,7 +15,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { getApps,getMenusList } from '@/api/nav'
-import Breadcrumb from '../../components/Breadcrumb/index.vue'
+import Breadcrumb from '../../Breadcrumb/index.vue'
 
 export default {
   name: 'NavCrumbTop',

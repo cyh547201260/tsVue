@@ -59,7 +59,7 @@
   import { getApps,getMenusList } from '@/api/nav'
   import { login, logout, getInfo } from '@/api/user'
   import {setToken,setTokenType} from '../../utils/auth.js'
-  import dashboradIndex from '@/views/dashboard/index'
+  import dashboradIndex from '@/views/Claim/dashboard/index'
   import page404 from '@/views/404'
 
 export default {

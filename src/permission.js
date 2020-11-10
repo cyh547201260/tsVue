@@ -26,7 +26,7 @@ const staticRoute = [
     children: [{
       path: 'index',
       name: '案件详情',
-      component: resolve => {require(['@/views/caseDetail/index'], resolve)},
+      component: resolve => {require(['@/views/Claim/caseDetail/index'], resolve)},
       meta: { title: '案件详情', icon: 'dashboard' }
     }]
   },
@@ -88,9 +88,7 @@ router.beforeEach(async(to, from, next) => {
  * */
 function addAppsList(){
   getApps().then(response => {
-    console.log('123123')
     store.dispatch('app/setAppsList',response.data)
-    console.log(store.getters.appsList)
   })
 }
 

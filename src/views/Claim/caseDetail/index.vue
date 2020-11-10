@@ -11,10 +11,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import { getApps,getMenusList } from '@/api/nav'
-import NavCrumbTop from '../../components/CaseDetail/NavCrumbTop.vue'
-import Breadcrumb from '../../components/Breadcrumb/index.vue'
-import CaseDetailBody from '../../components/CaseDetail/CaseDetailBody.vue'
-import CaseInfoTitle from '../../components/CaseDetail/CaseInfoTitle.vue'
+import NavCrumbTop from '../../../components/Claim/CaseDetail/NavCrumbTop.vue'
+import CaseDetailBody from '../../../components/Claim/CaseDetail/CaseDetailBody.vue'
+import CaseInfoTitle from '../../../components/Claim/CaseDetail/CaseInfoTitle.vue'
 
 export default {
   name: 'CaseDetail',
@@ -23,7 +22,7 @@ export default {
 
     }
   },
-  components: {Breadcrumb,NavCrumbTop,CaseInfoTitle,CaseDetailBody},
+  components: {NavCrumbTop,CaseInfoTitle,CaseDetailBody},
   computed: {
     ...mapGetters([
       'name'

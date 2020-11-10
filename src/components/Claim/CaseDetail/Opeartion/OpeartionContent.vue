@@ -4,13 +4,6 @@
       <el-form-item label="对接类型">
         <el-cascader v-model="form.type" :options="options" @change="handleChange"></el-cascader>
       </el-form-item>
-      <el-form-item label="计算类型">
-        <el-radio-group v-model="operationNotes">
-          <template v-for="item in operationNotesOptions">
-            <el-radio :label="item.value">{{item.label}}</el-radio>
-          </template>
-        </el-radio-group>
-      </el-form-item>
       <el-form-item label="上传单证">
         <el-upload
           action="#"
