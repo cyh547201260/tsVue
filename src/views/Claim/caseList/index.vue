@@ -24,7 +24,7 @@ import DataTable from '../../../components/Public/DataTable/DataTable.vue'
 import TablePagination from '../../../components/Public/DataTable/TablePagination.vue'
 
 export default {
-  name: 'Dashboard',
+  name: '案件列表',
   data(){
     return{
       tableCellWidth:[70,70,110,155,220,200,80,120,100,85,160,160,80]
@@ -41,9 +41,6 @@ export default {
       return this.$store.getters.filterOptions;
     },
     tableDataList(){
-      console.log('-------')
-      console.log(this.$store.getters.tableDataList[0]['list_data'])
-      console.log('-------')
       return this.$store.getters.tableDataList[0]['list_data'];
     },
     tableKeysObjData(){

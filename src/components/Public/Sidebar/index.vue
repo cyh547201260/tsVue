@@ -1,13 +1,9 @@
 <template>
-  <div :class="{'has-logo':showLogo}">
-    <logo v-if="showLogo" :collapse="isCollapse" />
+  <div >
+    <logo v-if="showLogo" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <div class="sidebar-system-name">
-        <i class=""></i><span>理赔中心</span>
-      </div>
       <el-menu
         :default-active="activeMenu"
-        :collapse="isCollapse"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
         :unique-opened="false"
@@ -48,7 +44,8 @@ export default {
       return path
     },
     showLogo() {
-      return this.$store.state.settings.sidebarLogo
+      return true;
+      // return this.$store.state.settings.sidebarLogo
     },
     variables() {
       return variables

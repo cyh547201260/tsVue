@@ -1,7 +1,7 @@
 <template>
   <div class="data-table-box" ref="dataTableContentBox" :class="filterHighOpenState ? 'data-table-filter-open' : 'data-table-filter-close'" >
     <div style="width: 100%;height: 100%;" >
-      <el-table :data="tabledataobj" ref="dataTableBox" fit stripe style="width: 100%" :height="tableHeight">
+      <el-table :data="tabledataobj" class="data-table-ele" ref="dataTableBox" fit stripe :height="tableHeight">
           <template v-for="(item,key,index) in tablekeysobj">
             <table-item  :fullcellwidth="fullCellWidth"  :fullboxwidth="dataTableBoxWidth" :tableitemdataobj="tabledataobj" :tablecellwidth="tablecellwidth" :tabledata="tableData" :tablekey="item" :indexkey="key"></table-item>
           </template>
@@ -26,6 +26,7 @@
         bodyClientWidth:0,
         tableHeight:'100%',
         tableInitState:false,
+        windowSizeChange:false
       }
     },
     components:{TableItem},
@@ -40,10 +41,16 @@
         return this.$store.getters.tableDataList;
       },
       dataTableBoxWidth(){
-        return this.$refs.dataTableBox.$el.clientWidth -100;
+        if(this.$refs.dataTableBox){
+          return this.$refs.dataTableBox.$el.clientWidth -100;
+        }else{
+          return 0;
+        }
       },
       fullCellWidth(){
         var num = 0;
+        this.windowSizeChange = true;
+        console.log('fdfffffffffffffffff')
         for(var i = 0; i < this.tablekeysobj.length ; i++){
           num += this.tablecellwidth[i];
         }
@@ -64,8 +71,16 @@
         this.getTableBoxHeight();
       }
     },
+    mounted() {
+      this.listenWindowResize();
+    },
     methods: {
-
+      listenWindowResize(){
+        var _this = this;
+        window.onresize = function(){
+          this.windowSizeChange = true;
+        }
+      },
       getClientWidth(){
         this.bodyClientWidth = document.body.offsetWidth -232;
       },
@@ -75,7 +90,7 @@
         },0)
       },
       goCaseDetail(data){
-        // this.$router.push({path:'/caseDetail/index', query:{id:data.id}})
+        this.$router.push({path:'/caseDetail/index', query:{id:data.id}})
       }
     }
   }
@@ -98,5 +113,8 @@
   }
   .data-table-box.data-table-filter-open{
     height: calc(100vh - 355px);
+  }
+  .data-table-ele{
+    width: 100%;
   }
 </style>

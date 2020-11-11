@@ -10,7 +10,7 @@
           <el-tag class="ins-state-tag" v-if="scope.row.state == 5" type="danger">打款中</el-tag>
         </template>
         <template v-if="tablekey.item_api_key == 'claim_id'">
-          <router-link :to="{ path: 'caseDetail/index', query: { id: tableitemdataobj[scope.$index][indexkey]['value'] }}"><el-link type="primary" v-text="tableitemdataobj[scope.$index][indexkey]['value']"></el-link></router-link>
+          <router-link :to="{ path: '/caseDetail/index', query: { id: tableitemdataobj[scope.$index][indexkey]['value'] }}"><el-link type="primary" v-text="tableitemdataobj[scope.$index][indexkey]['value']"></el-link></router-link>
         </template>
         <template v-else>
           <span v-text="tableitemdataobj[scope.$index][indexkey]['value']"></span> <!--tableitemdataobj ? tableitemdataobj[scope.$index]['value'] : ''-->

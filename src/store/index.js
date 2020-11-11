@@ -4,9 +4,9 @@ import getters from './getters'
 import app from './modules/app'
 import settings from './modules/settings'
 import user from './modules/user'
-import data from './modules/data'
-import page from './modules/page'
-import detail from './modules/detail'
+import data from './modules/ig-claim-data'
+import page from './modules/ig-claim-page'
+import detail from './modules/ig-claim-detail'
 
 Vue.use(Vuex)
 

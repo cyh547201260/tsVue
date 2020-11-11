@@ -43,10 +43,20 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard123123',
       component: () => import('@/views/Claim/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '案件查询', icon: 'dashboard' }
     }]
   },
 
+  {
+    path: '/caseDetail',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: '案件详情',
+      component: () => import('@/views/Claim/caseDetail/index'),
+      meta: { title: '案件详情', icon: 'dashboard' }
+    }]
+  },
 
   {
     path: 'external-link',
